@@ -1,22 +1,23 @@
 import { API_URL } from "@/config/index";
 
-export default function Home({ data }) {
+export default function PostsPage({ posts }) {
   return (
     <>
-      <div>{data.title}</div>
-      <div>{data.body}</div>
+      {posts.map((post) => (
+        <div key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+        </div>
+      ))}
     </>
   );
 }
 
 export async function getStaticProps() {
   const res = await fetch(`${API_URL}/api/v1/posts`);
-  const data = await res.json();
+  const posts = await res.json();
 
   return {
-    props: {
-      data,
-      revalidate: 1,
-    },
+    props: { posts },
   };
 }

@@ -1,13 +1,11 @@
+import PostItem from "../components/PostItem";
 import { API_URL } from "@/config/index";
 
 export default function PostsPage({ posts }) {
   return (
     <>
       {posts.map((post) => (
-        <div key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-        </div>
+        <PostItem key={post.id} post={post} />
       ))}
     </>
   );

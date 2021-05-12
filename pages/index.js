@@ -16,7 +16,8 @@ export default function PostsPage({ posts }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${API_URL}/posts?limit=3`);
+  // const res = await fetch(`${API_URL}/posts?limit=3`);
+  const res = await fetch(`${API_URL}/posts`);
   const posts = await res.json();
 
   return {

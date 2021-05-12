@@ -1,0 +1,32 @@
+.postItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-bottom: 1px solid #dadada;
+}
+
+.postItem_image {
+  width: 40%;
+}
+
+.postItem_info {
+  width: 55%;
+  position: relative;
+}
+
+.postItem_title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.postItem_read {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-decoration: underline;
+}
+
+.postItem_read:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}

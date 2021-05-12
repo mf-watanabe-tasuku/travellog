@@ -10,7 +10,7 @@ export default function PostsPage({ posts }) {
         <PostItem key={post.id} post={post} />
       ))}
 
-      <Link href="/posts">View all</Link>
+      {/* <Link href="/posts">View all</Link> */}
     </Layout>
   );
 }

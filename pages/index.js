@@ -15,7 +15,7 @@ export default function PostsPage({ posts }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // const res = await fetch(`${API_URL}/posts?limit=3`);
   const res = await fetch(`${API_URL}/posts`);
   const posts = await res.json();
@@ -23,6 +23,7 @@ export async function getServerSideProps() {
   return {
     props: {
       posts: posts.data,
+      revalidate: 1,
     },
   };
 }

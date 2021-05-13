@@ -1,0 +1,24 @@
+.postItem_container {
+  padding: 50px 0;
+}
+
+.postItem_date {
+  color: #777;
+  font-size: 14px;
+}
+
+.postItem_title {
+  margin-bottom: 15px;
+}
+
+.postItem_eyecatch {
+  margin-bottom: 20px;
+}
+
+.postItem_body {
+  margin-bottom: 50px;
+}
+
+.postItem_date:nth-of-type(1) {
+  margin-right: 10px;
+}

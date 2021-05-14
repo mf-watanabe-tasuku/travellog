@@ -3,6 +3,9 @@ import Image from "next/image";
 import styles from "@/styles/PostItem.module.css";
 
 export default function PostItem({ post }) {
+  const postBody =
+    post.body.length > 150 ? post.body.substring(0, 150) + "..." : post.body;
+
   return (
     <div className={styles.postItem}>
       <div className={styles.postItem_image}>
@@ -14,9 +17,12 @@ export default function PostItem({ post }) {
       </div>
       <div className={styles.postItem_info}>
         <h2 className={styles.postItem_title}>{post.title}</h2>
-        <p className={styles.postItem_excerpt}>{post.body.substring(0, 100)}</p>
+        <p className={styles.postItem_date}>
+          Posted: {new Date(post.updated_at).toLocaleDateString("en-US")}
+        </p>
+        <p className={styles.postItem_excerpt}>{postBody}</p>
         <Link href={`/posts/${post.id}`}>
-          <span className={styles.postItem_read}>READ ARTICLE</span>
+          <span className={styles.postItem_read}>READ ARTICLE →</span>
         </Link>
       </div>
     </div>

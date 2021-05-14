@@ -18,6 +18,12 @@ export default function AddPostPage() {
 
     if (values.title === "") {
       alert("Please fill in Title");
+      return;
+    }
+
+    if (values.title.length > 100) {
+      alert("Title must be less than 100 characters");
+      return;
     }
 
     const res = await fetch(`${API_URL}/posts`, {

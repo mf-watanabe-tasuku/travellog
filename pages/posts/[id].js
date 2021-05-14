@@ -5,6 +5,8 @@ import { API_URL } from "@/config/index";
 import styles from "@/styles/Post.module.css";
 
 export default function PostPage({ post }) {
+  const postId = post.id >= 10 ? post.id % 10 : post.id;
+
   return (
     <Layout title={post.title}>
       <div className={styles.postItem_container}>
@@ -18,11 +20,7 @@ export default function PostPage({ post }) {
         </div>
         <h1 className={styles.postItem_title}>{post.title}</h1>
         <div className={styles.postItem_eyecatch}>
-          <Image
-            src={`/images/sample${post.id}.jpg`}
-            width={860}
-            height={500}
-          />
+          <Image src={`/images/sample${postId}.jpg`} width={860} height={500} />
         </div>
         <div className={styles.postItem_body}>{post.body}</div>
         <Link href="/posts">Back To Posts</Link>

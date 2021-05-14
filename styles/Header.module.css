@@ -3,10 +3,28 @@
   text-align: center;
   box-shadow: 0 1px 2px #ddd;
 }
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
 .header__link {
   line-height: 60px;
   text-decoration: none;
   font-weight: bold;
   font-size: 26px;
   color: #333;
+}
+
+.nav__list {
+  list-style-type: none;
+}
+.nav__link {
+  text-decoration: none;
+  color: inherit;
+}
+.nav__link:hover {
+  opacity: 0.5;
+  text-decoration: underline;
 }

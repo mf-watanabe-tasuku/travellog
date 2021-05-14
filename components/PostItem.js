@@ -3,12 +3,14 @@ import Image from "next/image";
 import styles from "@/styles/PostItem.module.css";
 
 export default function PostItem({ post }) {
-  const postId = post.id >= 10 ? post.id % 10 : post.id;
-
   return (
     <div className={styles.postItem}>
       <div className={styles.postItem_image}>
-        <Image src={`/images/sample${postId}.jpg`} width={500} height={300} />
+        <Image
+          src={`/images/sample${Math.floor(Math.random() * 10 + 1)}.jpg`}
+          width={500}
+          height={300}
+        />
       </div>
       <div className={styles.postItem_info}>
         <h2 className={styles.postItem_title}>{post.title}</h2>

@@ -35,9 +35,11 @@ export default function PostPage({ post }) {
             </span>
           </div>
           <div className={styles.postItem_actions}>
-            <span className={styles.postItem_edit}>
-              <FaPencilAlt className={styles.postItem_icon} /> Edit Post
-            </span>
+            <Link href={`/posts/edit/${post.id}`}>
+              <span className={styles.postItem_edit}>
+                <FaPencilAlt className={styles.postItem_icon} /> Edit Post
+              </span>
+            </Link>
             <span className={styles.postItem_delete} onClick={deletePost}>
               <FaTimes className={styles.postItem_icon} /> Delete Post
             </span>

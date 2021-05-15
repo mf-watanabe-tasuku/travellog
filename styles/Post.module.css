@@ -2,9 +2,39 @@
   padding: 50px 0;
 }
 
+.postItem_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .postItem_date {
   color: #777;
   font-size: 14px;
+}
+
+.postItem_actions {
+  display: flex;
+  align-items: center;
+}
+
+.postItem_icon {
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.postItem_edit {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  color: rgb(0, 102, 255);
+}
+
+.postItem_delete {
+  cursor: pointer;
+  color: rgb(235, 41, 41);
+  display: flex;
+  align-items: center;
 }
 
 .postItem_title {

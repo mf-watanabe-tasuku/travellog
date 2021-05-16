@@ -26,7 +26,7 @@ export default function AddPostPage() {
       return;
     }
 
-    const res = await fetch(`${API_URL}/posts`, {
+    const postRes = await fetch(`${API_URL}/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,14 +34,19 @@ export default function AddPostPage() {
       body: JSON.stringify(values),
     });
 
-    if (!res.ok) {
-      if (res.status === 403 || res.status === 401) {
-        alert("Something went wrong");
-        return;
-      }
+    const post = await postRes.json();
+    const postId = post.data.id;
+
+    if (postRes.status !== 200) {
+      alert("Something went wrong");
+      return;
+    }
+
+    if (imageRes.status !== 200) {
+      alert("Something went wrong");
+      return;
     } else {
-      const post = await res.json();
-      router.push(`/posts/${post.data.id}`);
+      router.push("/posts");
     }
   };
 

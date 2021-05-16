@@ -2,6 +2,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Layout from "@/components/Layout";
+import ImageUpload from "@/components/ImageUpload";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { API_URL } from "@/config/index";
@@ -43,7 +44,7 @@ export default function EditPostPage({ post }) {
       }
     } else {
       const post = await res.json();
-      router.push(`/posts/${post.data.id}`);
+      router.push(`/posts/${post.id}`);
     }
   };
 
@@ -51,6 +52,13 @@ export default function EditPostPage({ post }) {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
+
+  // const imageUploaded = async (e) => {
+  //   const res = await fetch(`${API_URL}/posts/${post.id}`);
+  //   const data = await res.json();
+  //   setImagePreview(data.image[0].formats.thumbnail.url);
+  //   setShowModal(false);
+  // };
 
   return (
     <Layout title="Edit Post">
@@ -80,11 +88,12 @@ export default function EditPostPage({ post }) {
 
         <input type="submit" value="Update Post" className="btn-secondary" />
       </form>
+      <ImageUpload postId={post.id} />
     </Layout>
   );
 }
 
-export async function getServerSideProps({ params: { id }, req }) {
+export async function getServerSideProps({ params: { id } }) {
   const res = await fetch(`${API_URL}/posts/${id}`);
   const post = await res.json();
 

@@ -8,6 +8,9 @@ import styles from "@/styles/Post.module.css";
 import { useRouter } from "next/router";
 
 export default function PostPage({ post, image }) {
+  image ||=
+    "https://res.cloudinary.com/dnzkxyfdv/image/upload/v1621204014/travellog/sample.jpg";
+
   const router = useRouter();
 
   const deletePost = async () => {

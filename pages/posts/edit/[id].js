@@ -44,7 +44,7 @@ export default function EditPostPage({ post }) {
       }
     } else {
       const post = await res.json();
-      router.push(`/posts/${post.id}`);
+      router.push(`/posts/${post.data.id}`);
     }
   };
 

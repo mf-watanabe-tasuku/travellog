@@ -8,11 +8,13 @@ import { useState } from "react";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 
-export default function EditPostPage({ post }) {
+export default function EditPostPage({ post, image }) {
   const [values, setValues] = useState({
     title: post.title,
     body: post.body,
   });
+
+  const [imagePreview, setImagePreview] = useState(image);
 
   const router = useRouter();
 
@@ -53,16 +55,16 @@ export default function EditPostPage({ post }) {
     setValues({ ...values, [name]: value });
   };
 
-  // const imageUploaded = async (e) => {
-  //   const res = await fetch(`${API_URL}/posts/${post.id}`);
-  //   const data = await res.json();
-  //   setImagePreview(data.image[0].formats.thumbnail.url);
-  //   setShowModal(false);
-  // };
+  const imageUploaded = async () => {
+    setImagePreview(image);
+    router.reload();
+    alert("Image uploaded");
+    // setShowModal(false);
+  };
 
   return (
     <Layout title="Edit Post">
-      <Link href="/posts">Go Back</Link>
+      <Link href={`/posts/${post.id}`}>Go Back</Link>
       <h1>Edit Post</h1>
       <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
@@ -88,7 +90,16 @@ export default function EditPostPage({ post }) {
 
         <input type="submit" value="Update Post" className="btn-secondary" />
       </form>
-      <ImageUpload postId={post.id} />
+
+      <h2>Post Image</h2>
+      {imagePreview ? (
+        <img src={imagePreview} height={100} width={170} />
+      ) : (
+        <div>
+          <p>No image uploaded</p>
+        </div>
+      )}
+      <ImageUpload postId={post.id} imageUploaded={imageUploaded} />
     </Layout>
   );
 }
@@ -99,7 +110,8 @@ export async function getServerSideProps({ params: { id } }) {
 
   return {
     props: {
-      post: post.data,
+      post: post.data.post,
+      image: post.data.image,
     },
   };
 }

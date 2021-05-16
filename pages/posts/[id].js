@@ -3,12 +3,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
 import Layout from "@/components/Layout";
 import Link from "next/link";
-import Image from "next/image";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Post.module.css";
 import { useRouter } from "next/router";
 
-export default function PostPage({ post }) {
+export default function PostPage({ post, image }) {
   const router = useRouter();
 
   const deletePost = async () => {
@@ -48,11 +47,7 @@ export default function PostPage({ post }) {
         <h1 className={styles.postItem_title}>{post.title}</h1>
         <ToastContainer />
         <div className={styles.postItem_eyecatch}>
-          <Image
-            src={`/images/sample${Math.floor(Math.random() * 10 + 1)}.jpg`}
-            width={860}
-            height={500}
-          />
+          <img src={image} width={860} height={500} />
         </div>
         <div className={styles.postItem_body}>{post.body}</div>
         <Link href="/posts">Back To Posts</Link>
@@ -67,7 +62,8 @@ export async function getServerSideProps({ query: { id } }) {
 
   return {
     props: {
-      post: post.data,
+      post: post.data.post,
+      image: post.data.image,
     },
   };
 }

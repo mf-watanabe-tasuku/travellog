@@ -2,7 +2,7 @@ import { useState } from "react";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 
-export default function ImageUpload({ postId }) {
+export default function ImageUpload({ postId, imageUploaded }) {
   const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -10,7 +10,6 @@ export default function ImageUpload({ postId }) {
 
     const formData = new FormData();
     formData.append("files", image);
-    formData.append("ref", "posts");
     formData.append("refId", postId);
     formData.append("field", "image");
 
@@ -20,8 +19,7 @@ export default function ImageUpload({ postId }) {
     });
 
     if (res.ok) {
-      // imageUploaded();
-      alert("Image uploaded");
+      imageUploaded();
     }
   };
 

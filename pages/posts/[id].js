@@ -3,13 +3,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
 import Layout from "@/components/Layout";
 import Link from "next/link";
-import { API_URL } from "@/config/index";
+import { API_URL, DEFAULT_IMAGE_PATH } from "@/config/index";
 import styles from "@/styles/Post.module.css";
 import { useRouter } from "next/router";
 
 export default function PostPage({ post, image }) {
-  image ||=
-    "https://res.cloudinary.com/dnzkxyfdv/image/upload/v1621204014/travellog/sample.jpg";
+  image ||= DEFAULT_IMAGE_PATH;
 
   const router = useRouter();
 

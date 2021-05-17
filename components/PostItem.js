@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import styles from "@/styles/PostItem.module.css";
+import { DEFAULT_IMAGE_PATH } from "@/config/index";
 
 export default function PostItem({ post }) {
   const postBody =
@@ -9,11 +9,7 @@ export default function PostItem({ post }) {
   return (
     <div className={styles.postItem}>
       <div className={styles.postItem_image}>
-        <Image
-          src={`/images/sample${Math.floor(Math.random() * 10 + 1)}.jpg`}
-          width={500}
-          height={300}
-        />
+        <img src={post.image || DEFAULT_IMAGE_PATH} width={500} height={300} />
       </div>
       <div className={styles.postItem_info}>
         <h2 className={styles.postItem_title}>{post.title}</h2>

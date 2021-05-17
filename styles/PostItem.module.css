@@ -9,6 +9,11 @@
   width: 40%;
 }
 
+.postItem_image img {
+  width: 100%;
+  height: auto;
+}
+
 .postItem_info {
   width: 55%;
   position: relative;

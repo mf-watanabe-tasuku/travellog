@@ -1,5 +1,6 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import ImageUpload from "@/components/ImageUpload";
@@ -8,13 +9,13 @@ import { useState } from "react";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 
-export default function EditPostPage({ post, image }) {
+export default function EditPostPage({ post, eyecatchUrl, eyecatchId }) {
   const [values, setValues] = useState({
     title: post.title,
     body: post.body,
   });
 
-  const [imagePreview, setImagePreview] = useState(image);
+  const [imagePreview, setImagePreview] = useState(eyecatchUrl);
 
   const router = useRouter();
 
@@ -46,7 +47,7 @@ export default function EditPostPage({ post, image }) {
       }
     } else {
       const post = await res.json();
-      router.push(`/posts/${post.data.id}`);
+      router.push(`/posts/${post.id}`);
     }
   };
 
@@ -56,10 +57,18 @@ export default function EditPostPage({ post, image }) {
   };
 
   const imageUploaded = async () => {
-    setImagePreview(image);
+    setImagePreview(eyecatchUrl);
     router.reload();
-    alert("Image uploaded");
+    // toast.success("Eyecatch uploaded");
     // setShowModal(false);
+  };
+
+  const deleteEyecatch = async () => {
+    await fetch(`${API_URL}/eyecatches/${eyecatchId}`, {
+      method: "DELETE",
+    });
+    router.reload();
+    // toast.success("Eyecatch deleted");
   };
 
   return (
@@ -91,14 +100,19 @@ export default function EditPostPage({ post, image }) {
         <input type="submit" value="Update Post" className="btn-secondary" />
       </form>
 
-      <h2>Post Image</h2>
-      {imagePreview ? (
-        <img src={imagePreview} height={100} width={170} />
-      ) : (
-        <div>
+      <div className={styles.imagePreview}>
+        <h2>Post Image</h2>
+        {imagePreview ? (
+          <div className={styles.eyecatchWrap}>
+            <span onClick={deleteEyecatch} className={styles.eyecatchDelete}>
+              <FaTimes />
+            </span>
+            <img src={imagePreview} height={100} width={170} />
+          </div>
+        ) : (
           <p>No image uploaded</p>
-        </div>
-      )}
+        )}
+      </div>
       <ImageUpload post={post} imageUploaded={imageUploaded} />
     </Layout>
   );
@@ -111,7 +125,8 @@ export async function getServerSideProps({ params: { id } }) {
   return {
     props: {
       post: post.data.post,
-      image: post.data.image,
+      eyecatchUrl: post.data.eyecatchUrl,
+      eyecatchId: post.data.eyecatchId,
     },
   };
 }

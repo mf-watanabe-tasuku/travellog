@@ -65,7 +65,7 @@ export async function getServerSideProps({ query: { id } }) {
   return {
     props: {
       post: post.data.post,
-      image: post.data.image,
+      image: post.data.eyecatchUrl,
     },
   };
 }

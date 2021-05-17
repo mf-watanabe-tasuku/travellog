@@ -22,3 +22,34 @@
   padding: 8px 25px;
   font-size: 16px;
 }
+
+.imagePreview {
+  margin-top: 50px;
+}
+
+.eyecatchWrap {
+  position: relative;
+  width: 170px;
+}
+
+.eyecatchDelete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  color: #fff;
+  background-color: #000;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.eyecatchDelete:hover {
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}

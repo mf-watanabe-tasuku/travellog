@@ -8,6 +8,10 @@ export default function ImageUpload({ post, imageUploaded }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!image) {
+      return;
+    }
+
     const formData = new FormData();
     formData.append("files", image);
     formData.append("refId", post.id);

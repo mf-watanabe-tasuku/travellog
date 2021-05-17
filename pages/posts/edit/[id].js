@@ -99,7 +99,7 @@ export default function EditPostPage({ post, image }) {
           <p>No image uploaded</p>
         </div>
       )}
-      <ImageUpload post={post} hasImage={image} imageUploaded={imageUploaded} />
+      <ImageUpload post={post} imageUploaded={imageUploaded} />
     </Layout>
   );
 }

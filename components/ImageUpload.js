@@ -2,7 +2,7 @@ import { useState } from "react";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 
-export default function ImageUpload({ post, hasImage, imageUploaded }) {
+export default function ImageUpload({ post, imageUploaded }) {
   const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -13,13 +13,8 @@ export default function ImageUpload({ post, hasImage, imageUploaded }) {
     formData.append("refId", post.id);
     formData.append("field", "image");
 
-    const method = hasImage ? "PUT" : "POST";
-    const url = hasImage
-      ? `${API_URL}/eyecatches/${post.id}`
-      : `${API_URL}/eyecatches/`;
-
-    const res = await fetch(url, {
-      method: method,
+    const res = await fetch(`${API_URL}/eyecatches/`, {
+      method: "POST",
       body: formData,
     });
 

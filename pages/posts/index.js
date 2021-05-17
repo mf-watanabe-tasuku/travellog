@@ -6,7 +6,9 @@ import styles from "@/styles/PostList.module.css";
 
 export default function PostsPage({ posts, page, total }) {
   return (
-    <Layout title="Posts Page">
+    <Layout title="All Posts">
+      <h1>All Posts</h1>
+
       <div className={styles.postList}>
         {posts.map((post) => (
           <PostItem key={post.id} post={post} />

@@ -32,9 +32,10 @@ export default function ImageUpload({ post, imageUploaded }) {
   };
 
   return (
-    <div className={styles.formRow}>
+    <div className={styles.form}>
+      <h1>Upload Post Eye-catch</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.file}>
           <input type="file" onChange={handleFileChange} />
         </div>
         <input type="submit" value="Upload" className="btn btn-secondary" />

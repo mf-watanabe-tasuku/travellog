@@ -1,8 +1,9 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaImage } from "react-icons/fa";
 import Link from "next/link";
 import Layout from "@/components/Layout";
+import Modal from "@/components/Modal";
 import ImageUpload from "@/components/ImageUpload";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -16,6 +17,8 @@ export default function EditPostPage({ post, eyecatchUrl, eyecatchId }) {
   });
 
   const [imagePreview, setImagePreview] = useState(eyecatchUrl);
+
+  const [showModal, setShowModal] = useState(false);
 
   const router = useRouter();
 
@@ -97,11 +100,15 @@ export default function EditPostPage({ post, eyecatchUrl, eyecatchId }) {
           ></textarea>
         </div>
 
-        <input type="submit" value="Update Post" className="btn-secondary" />
+        <input
+          type="submit"
+          value="Update Post"
+          className="btn btn-secondary"
+        />
       </form>
 
       <div className={styles.imagePreview}>
-        <h2>Post Image</h2>
+        <h2 className={styles.title}>Post Image</h2>
         {imagePreview ? (
           <div className={styles.eyecatchWrap}>
             <span onClick={deleteEyecatch} className={styles.eyecatchDelete}>
@@ -112,8 +119,17 @@ export default function EditPostPage({ post, eyecatchUrl, eyecatchId }) {
         ) : (
           <p>No image uploaded</p>
         )}
+        <button
+          onClick={() => setShowModal(true)}
+          className="btn btn-secondary"
+        >
+          <FaImage /> Set Image
+        </button>
       </div>
-      <ImageUpload post={post} imageUploaded={imageUploaded} />
+
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <ImageUpload post={post} imageUploaded={imageUploaded} />
+      </Modal>
     </Layout>
   );
 }

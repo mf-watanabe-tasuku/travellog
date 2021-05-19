@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
+import AuthContext from "@/context/AuthContext";
 import styles from "@/styles/AuthForm.module.css";
 
 export default function RegisterPage() {
@@ -11,6 +12,8 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const { register, error } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +23,7 @@ export default function RegisterPage() {
       return;
     }
 
-    console.log({ username, email, password });
+    register({ username, email, password });
   };
 
   return (
@@ -38,6 +41,7 @@ export default function RegisterPage() {
                 type="text"
                 id="username"
                 value={username}
+                autoComplete="username"
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
@@ -47,6 +51,7 @@ export default function RegisterPage() {
                 type="email"
                 id="email"
                 value={email}
+                autoComplete="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -56,6 +61,7 @@ export default function RegisterPage() {
                 type="password"
                 id="password"
                 value={password}
+                autoComplete="new-password"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -65,6 +71,7 @@ export default function RegisterPage() {
                 type="password"
                 id="passwordConfirm"
                 value={passwordConfirm}
+                autoComplete="new-password"
                 onChange={(e) => setPasswordConfirm(e.target.value)}
               />
             </div>

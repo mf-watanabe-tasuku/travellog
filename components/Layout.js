@@ -5,7 +5,7 @@ import styles from "@/styles/Layout.module.css";
 
 export default function Layout({ title, keywords, description, children }) {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -13,9 +13,9 @@ export default function Layout({ title, keywords, description, children }) {
       </Head>
 
       <Header />
-      <div className={styles.wrapper}>
+      <main className={styles.main}>
         <div className={styles.container}>{children}</div>
-      </div>
+      </main>
       <Footer />
     </div>
   );

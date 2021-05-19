@@ -1,14 +1,21 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.main {
   padding: 30px 0;
+  flex-grow: 1;
 }
 .container {
   max-width: 860px;
   margin: 0 auto;
   padding: 0 15px;
+  height: 100%;
 }
 
 @media screen and (max-width: 767px) {
-  .wrapper {
+  .main {
     padding: 20px 0;
   }
 }

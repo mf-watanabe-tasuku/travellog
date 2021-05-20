@@ -17,14 +17,11 @@ export default async (req, res) => {
 
     const data = await backendRes.json();
 
-    if (backendRes.ok) {
+    if (data.status === "created") {
       // @todo = Set Cookie
-      res.status(200).json({ user: data.user });
+      res.status(200).json({ user: data.data });
     } else {
-      // res
-      //   .status(data.statusCode)
-      //   .json({ message: data.message[0].messages[0].message });
-      res.status(400).json({ message: "this is an error!" });
+      res.status(500).json({ message: data.message });
     }
   } else {
     res.setHeader("Allow", ["POST"]);

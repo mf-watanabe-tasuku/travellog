@@ -10,8 +10,29 @@ export const AuthProvider = ({ children }) => {
 
   const router = useRouter();
 
-  const register = async (user) => {
-    console.log(user);
+  const register = async ({ username, email, password, passwordConfirm }) => {
+    const res = await fetch(`${NEXT_URL}/api/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+        passwordConfirm,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setUser(data.user);
+      router.push("/");
+    } else {
+      setError(data.message);
+      setError(null);
+    }
   };
 
   const login = async ({ email, password }) => {

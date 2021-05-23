@@ -1,3 +1,4 @@
+import { parseCookies } from "@/helpers/index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaTimes, FaImage } from "react-icons/fa";
@@ -10,7 +11,7 @@ import { useState } from "react";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 
-export default function EditPostPage({ post }) {
+export default function EditPostPage({ post, token }) {
   const [values, setValues] = useState({
     title: post.title,
     body: post.body,
@@ -39,6 +40,7 @@ export default function EditPostPage({ post }) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
@@ -50,7 +52,7 @@ export default function EditPostPage({ post }) {
       }
     } else {
       const post = await res.json();
-      router.push(`/posts/${post.id}`);
+      router.push(`/posts/${post.data.id}`);
     }
   };
 
@@ -62,8 +64,6 @@ export default function EditPostPage({ post }) {
   const imageUploaded = async () => {
     setImagePreview(post.eyecatchUrl);
     router.reload();
-    // toast.success("Eyecatch uploaded");
-    // setShowModal(false);
   };
 
   const deleteEyecatch = async () => {
@@ -71,7 +71,6 @@ export default function EditPostPage({ post }) {
       method: "DELETE",
     });
     router.reload();
-    // toast.success("Eyecatch deleted");
   };
 
   return (
@@ -80,7 +79,7 @@ export default function EditPostPage({ post }) {
       <h1>Edit Post</h1>
       <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.formRow}>
+        <div className={styles.form_row}>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -90,7 +89,7 @@ export default function EditPostPage({ post }) {
             onChange={handleInputChange}
           />
         </div>
-        <div className={styles.formRow}>
+        <div className={styles.form_row}>
           <label htmlFor="body">Content</label>
           <textarea
             id="body"
@@ -134,13 +133,16 @@ export default function EditPostPage({ post }) {
   );
 }
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ req, params: { id } }) {
+  const { token } = parseCookies(req);
+
   const res = await fetch(`${API_URL}/posts/${id}`);
   const post = await res.json();
 
   return {
     props: {
       post: post.data,
+      token,
     },
   };
 }

@@ -33,7 +33,7 @@ export default function ImageUpload({ post, imageUploaded }) {
 
   return (
     <div className={styles.form}>
-      <h1>Upload Post Eye-catch</h1>
+      <h1 className={styles.form_title}>Upload Post Eye-catch</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.file}>
           <input type="file" onChange={handleFileChange} />

@@ -1,4 +1,8 @@
-.form .formRow {
+.form_row {
+  margin-bottom: 20px;
+}
+
+.form_title {
   margin-bottom: 20px;
 }
 

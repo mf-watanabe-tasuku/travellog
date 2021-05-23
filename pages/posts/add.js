@@ -59,7 +59,7 @@ export default function AddPostPage({ token }) {
       <h1>Add Post</h1>
       <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.formRow}>
+        <div className={styles.form_row}>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -69,7 +69,7 @@ export default function AddPostPage({ token }) {
             onChange={handleInputChange}
           />
         </div>
-        <div className={styles.formRow}>
+        <div className={styles.form_row}>
           <label htmlFor="body">Content</label>
           <textarea
             id="body"

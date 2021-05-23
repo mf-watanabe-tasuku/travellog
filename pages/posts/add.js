@@ -19,16 +19,6 @@ export default function AddPostPage({ token }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (values.title === "") {
-      alert("Please fill in Title");
-      return;
-    }
-
-    if (values.title.length > 100) {
-      alert("Title must be less than 100 characters");
-      return;
-    }
-
     const postRes = await fetch(`${API_URL}/posts`, {
       method: "POST",
       headers: {
@@ -41,7 +31,7 @@ export default function AddPostPage({ token }) {
     const post = await postRes.json();
 
     if (!postRes.ok) {
-      toast.error(post.message);
+      toast.error(post.data);
       return;
     } else {
       router.push(`/posts/${post.data.id}`);

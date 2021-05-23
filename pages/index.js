@@ -7,7 +7,7 @@ import styles from "@/styles/PostList.module.css";
 export default function PostsPage({ posts }) {
   return (
     <Layout title="Latest Posts">
-      <h1>Latest Posts</h1>
+      <h1 className="page_heading">Latest Posts</h1>
 
       <div className={styles.postList}>
         {posts.map((post) => (

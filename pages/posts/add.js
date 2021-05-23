@@ -56,7 +56,7 @@ export default function AddPostPage({ token }) {
   return (
     <Layout title="Add Post">
       <Link href="/posts">Go Back</Link>
-      <h1>Add Post</h1>
+      <h1 className="page_heading">Add Post</h1>
       <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.form_row}>

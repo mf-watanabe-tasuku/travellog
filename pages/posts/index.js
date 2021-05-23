@@ -7,7 +7,7 @@ import styles from "@/styles/PostList.module.css";
 export default function PostsPage({ posts, page, total }) {
   return (
     <Layout title="All Posts">
-      <h1>Posts {`- Page: ${page}`}</h1>
+      <h1 className="page_heading">Posts {`- Page: ${page}`}</h1>
 
       <div className={styles.postList}>
         {posts.map((post) => (

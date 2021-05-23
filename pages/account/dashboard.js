@@ -33,7 +33,7 @@ export default function DashboardPage({ posts, token }) {
       <Link href="/posts">Go Back</Link>
       <h1 className="page_heading">Dashboard</h1>
       {posts.map((post) => (
-        <DashboardPost post={post} handleDelete={deletePost} />
+        <DashboardPost key={post.id} post={post} handleDelete={deletePost} />
       ))}
     </Layout>
   );

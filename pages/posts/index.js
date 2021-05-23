@@ -7,7 +7,7 @@ import styles from "@/styles/PostList.module.css";
 export default function PostsPage({ posts, page, total }) {
   return (
     <Layout title="All Posts">
-      <h1>All Posts</h1>
+      <h1>Posts {`- Page: ${page}`}</h1>
 
       <div className={styles.postList}>
         {posts.map((post) => (
@@ -23,18 +23,20 @@ export default function PostsPage({ posts, page, total }) {
 export async function getServerSideProps({ query: { page = 1 } }) {
   const start = (+page - 1) * PER_PAGE;
 
-  const countRes = await fetch(`${API_URL}/posts/count`);
-  const countData = await countRes.json();
-  const postsCount = countData.data;
+  const totalRes = await fetch(`${API_URL}/posts/count`);
+  const totalData = await totalRes.json();
+  const total = totalData.data;
 
-  const res = await fetch(`${API_URL}/posts?limit=${PER_PAGE}&start=${start}`);
-  const posts = await res.json();
+  const postsRes = await fetch(
+    `${API_URL}/posts?limit=${PER_PAGE}&start=${start}`
+  );
+  const posts = await postsRes.json();
 
   return {
     props: {
       posts: posts.data,
       page: +page,
-      postsCount,
+      total,
     },
   };
 }

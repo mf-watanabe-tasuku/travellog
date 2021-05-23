@@ -20,7 +20,7 @@ export default async (req, res) => {
     const user = await backendRes.json();
 
     if (backendRes.ok) {
-      res.status(200).json({ user });
+      res.status(200).json({ user: user.data });
     } else {
       res.status(403).json({ message: "User forbidden" });
     }

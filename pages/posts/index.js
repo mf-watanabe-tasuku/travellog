@@ -23,9 +23,9 @@ export default function PostsPage({ posts, page, total }) {
 export async function getServerSideProps({ query: { page = 1 } }) {
   const start = (+page - 1) * PER_PAGE;
 
-  const totalRes = await fetch(`${API_URL}/posts/count`);
-  const totalData = await totalRes.json();
-  const total = totalData.data;
+  const countRes = await fetch(`${API_URL}/posts/count`);
+  const countData = await countRes.json();
+  const postsCount = countData.data;
 
   const res = await fetch(`${API_URL}/posts?limit=${PER_PAGE}&start=${start}`);
   const posts = await res.json();
@@ -34,7 +34,7 @@ export async function getServerSideProps({ query: { page = 1 } }) {
     props: {
       posts: posts.data,
       page: +page,
-      total,
+      postsCount,
     },
   };
 }

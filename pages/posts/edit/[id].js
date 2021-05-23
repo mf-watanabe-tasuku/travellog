@@ -10,13 +10,13 @@ import { useState } from "react";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 
-export default function EditPostPage({ post, eyecatchUrl, eyecatchId }) {
+export default function EditPostPage({ post }) {
   const [values, setValues] = useState({
     title: post.title,
     body: post.body,
   });
 
-  const [imagePreview, setImagePreview] = useState(eyecatchUrl);
+  const [imagePreview, setImagePreview] = useState(post.eyecatchUrl);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -60,14 +60,14 @@ export default function EditPostPage({ post, eyecatchUrl, eyecatchId }) {
   };
 
   const imageUploaded = async () => {
-    setImagePreview(eyecatchUrl);
+    setImagePreview(post.eyecatchUrl);
     router.reload();
     // toast.success("Eyecatch uploaded");
     // setShowModal(false);
   };
 
   const deleteEyecatch = async () => {
-    await fetch(`${API_URL}/eyecatches/${eyecatchId}`, {
+    await fetch(`${API_URL}/eyecatches/${post.eyecatchId}`, {
       method: "DELETE",
     });
     router.reload();
@@ -140,9 +140,7 @@ export async function getServerSideProps({ params: { id } }) {
 
   return {
     props: {
-      post: post.data.post,
-      eyecatchUrl: post.data.eyecatchUrl,
-      eyecatchId: post.data.eyecatchId,
+      post: post.data,
     },
   };
 }

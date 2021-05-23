@@ -7,9 +7,7 @@ import { API_URL, DEFAULT_IMAGE_PATH } from "@/config/index";
 import styles from "@/styles/Post.module.css";
 import { useRouter } from "next/router";
 
-export default function PostPage({ post, image }) {
-  image ||= DEFAULT_IMAGE_PATH;
-
+export default function PostPage({ post }) {
   const router = useRouter();
 
   const deletePost = async () => {
@@ -49,7 +47,11 @@ export default function PostPage({ post, image }) {
         <h1 className={styles.postItem_title}>{post.title}</h1>
         <ToastContainer />
         <div className={styles.postItem_eyecatch}>
-          <img src={image} width={860} height={500} />
+          <img
+            src={post.eyecatchUrl || DEFAULT_IMAGE_PATH}
+            width={860}
+            height={500}
+          />
         </div>
         <div className={styles.postItem_body}>{post.body}</div>
         <Link href="/posts">Back To Posts</Link>
@@ -64,8 +66,7 @@ export async function getServerSideProps({ query: { id } }) {
 
   return {
     props: {
-      post: post.data.post,
-      image: post.data.eyecatchUrl,
+      post: post.data,
     },
   };
 }

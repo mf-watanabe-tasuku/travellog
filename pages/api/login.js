@@ -1,3 +1,4 @@
+import cookie from "cookie";
 import { API_URL } from "@/config/index";
 
 export default async (req, res) => {
@@ -17,9 +18,19 @@ export default async (req, res) => {
 
     const data = await backendRes.json();
 
-    if (data.status === "created") {
-      // @todo = Set Cookie
-      res.status(200).json({ user: data.data });
+    if (backendRes.ok) {
+      res.setHeader(
+        "Set-Cookie",
+        cookie.serialize("token", data.data.jwt, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV != "development",
+          maxAge: 60 * 60 * 24 + 7,
+          sameSite: "strict",
+          path: "/",
+        })
+      );
+
+      res.status(200).json({ user: data.data.user });
     } else {
       res.status(500).json({ message: data.message });
     }

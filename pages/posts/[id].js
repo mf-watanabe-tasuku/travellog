@@ -30,7 +30,7 @@ export default function PostPage({ post }) {
             height={500}
           />
         </div>
-        <div className={styles.postItem_body}>{post.body}</div>
+        <div className={styles.post_body}>{post.body}</div>
         <Link href="/posts">Back To Posts</Link>
       </div>
     </Layout>

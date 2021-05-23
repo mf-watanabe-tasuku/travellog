@@ -1,11 +1,14 @@
+import { parseCookies } from "@/helpers/index";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function AddPostPage() {
+export default function AddPostPage({ token }) {
   const [values, setValues] = useState({
     title: "",
     body: "",
@@ -30,23 +33,18 @@ export default function AddPostPage() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
 
     const post = await postRes.json();
-    const postId = post.data.id;
 
-    if (postRes.status !== 200) {
-      alert("Something went wrong");
-      return;
-    }
-
-    if (imageRes.status !== 200) {
-      alert("Something went wrong");
+    if (!postRes.ok) {
+      toast.error(post.message);
       return;
     } else {
-      router.push("/posts");
+      router.push(`/posts/${post.data.id}`);
     }
   };
 
@@ -59,6 +57,7 @@ export default function AddPostPage() {
     <Layout title="Add Post">
       <Link href="/posts">Go Back</Link>
       <h1>Add Post</h1>
+      <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formRow}>
           <label htmlFor="title">Title</label>
@@ -84,4 +83,14 @@ export default function AddPostPage() {
       </form>
     </Layout>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const { token } = parseCookies(req);
+
+  return {
+    props: {
+      token,
+    },
+  };
 }

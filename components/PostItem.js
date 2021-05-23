@@ -9,7 +9,11 @@ export default function PostItem({ post }) {
   return (
     <div className={styles.postItem}>
       <div className={styles.postItem_image}>
-        <img src={post.image || DEFAULT_IMAGE_PATH} width={500} height={300} />
+        <img
+          src={post.eyecatchUrl || DEFAULT_IMAGE_PATH}
+          width={500}
+          height={300}
+        />
       </div>
       <div className={styles.postItem_info}>
         <h2 className={styles.postItem_title}>{post.title}</h2>

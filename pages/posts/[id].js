@@ -1,52 +1,29 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaPencilAlt, FaTimes } from "react-icons/fa";
 import Layout from "@/components/Layout";
 import Link from "next/link";
 import { API_URL, DEFAULT_IMAGE_PATH } from "@/config/index";
 import styles from "@/styles/Post.module.css";
-import { useRouter } from "next/router";
 
 export default function PostPage({ post }) {
-  const router = useRouter();
-
-  const deletePost = async () => {
-    if (confirm("Are you sure?")) {
-      await fetch(`${API_URL}/posts/${post.id}`, {
-        method: "DELETE",
-      });
-      router.push("/posts");
-    }
-  };
-
   return (
     <Layout title={post.title}>
-      <div className={styles.postItem_container}>
-        <div className={styles.postItem_info}>
+      <div className={styles.post_container}>
+        <div className={styles.post_info}>
           <div>
             <Link href={`/posts/edit/${post.id}`}>
-              <span className={styles.postItem_date}>
+              <span className={styles.post_date}>
                 Updated: {new Date(post.updated_at).toLocaleDateString("en-US")}
               </span>
             </Link>
-            <span className={styles.postItem_date}>
+            <span className={styles.post_date}>
               Posted: {new Date(post.created_at).toLocaleDateString("en-US")}
             </span>
           </div>
-          <div className={styles.postItem_actions}>
-            <Link href={`/posts/edit/${post.id}`}>
-              <span className={styles.postItem_edit}>
-                <FaPencilAlt className={styles.postItem_icon} /> Edit Post
-              </span>
-            </Link>
-            <span className={styles.postItem_delete} onClick={deletePost}>
-              <FaTimes className={styles.postItem_icon} /> Delete Post
-            </span>
-          </div>
         </div>
-        <h1 className={styles.postItem_title}>{post.title}</h1>
+        <h1 className={styles.post_title}>{post.title}</h1>
         <ToastContainer />
-        <div className={styles.postItem_eyecatch}>
+        <div className={styles.post_eyecatch}>
           <img
             src={post.eyecatchUrl || DEFAULT_IMAGE_PATH}
             width={860}

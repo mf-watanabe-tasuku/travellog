@@ -1,0 +1,32 @@
+.dashboardItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboardItem_actions {
+  display: flex;
+  align-items: center;
+}
+
+.dashboardItem_icon {
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.dashboardItem_edit {
+  cursor: pointer;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  color: rgb(0, 102, 255);
+}
+
+.dashboardItem_delete {
+  cursor: pointer;
+  color: rgb(235, 41, 41);
+  display: flex;
+  align-items: center;
+}

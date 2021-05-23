@@ -1,55 +1,24 @@
-.postItem_container {
+.post_container {
   padding: 50px 0;
 }
 
-.postItem_info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.postItem_date {
+.post_date {
   color: #777;
   font-size: 14px;
 }
 
-.postItem_actions {
-  display: flex;
-  align-items: center;
-}
-
-.postItem_icon {
-  margin-right: 4px;
-  font-size: 14px;
-}
-
-.postItem_edit {
-  cursor: pointer;
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  color: rgb(0, 102, 255);
-}
-
-.postItem_delete {
-  cursor: pointer;
-  color: rgb(235, 41, 41);
-  display: flex;
-  align-items: center;
-}
-
-.postItem_title {
+.post_title {
   margin-bottom: 15px;
 }
 
-.postItem_eyecatch {
+.post_eyecatch {
   margin-bottom: 20px;
 }
 
-.postItem_body {
+.post_body {
   margin-bottom: 50px;
 }
 
-.postItem_date:nth-of-type(1) {
+.post_date:nth-of-type(1) {
   margin-right: 10px;
 }

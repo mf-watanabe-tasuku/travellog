@@ -7,8 +7,9 @@ import Layout from "@/components/Layout";
 import Modal from "@/components/Modal";
 import ImageUpload from "@/components/ImageUpload";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { API_URL } from "@/config/index";
+import AuthContext from "@/context/AuthContext";
 import styles from "@/styles/Form.module.css";
 
 export default function EditPostPage({ post, token }) {
@@ -21,7 +22,17 @@ export default function EditPostPage({ post, token }) {
 
   const [showModal, setShowModal] = useState(false);
 
+  const { user } = useContext(AuthContext);
+
   const router = useRouter();
+
+  useEffect(() => {
+    if (user && user.id !== post.user_id) {
+      router.push(`/posts/${post.id}`).then(() => {
+        toast.error("Not authorized");
+      });
+    }
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,14 +56,17 @@ export default function EditPostPage({ post, token }) {
       body: JSON.stringify(values),
     });
 
+    const data = await res.json();
+
     if (!res.ok) {
       if (res.status === 403 || res.status === 401) {
         toast.error("Something went wrong");
         return;
+      } else if (res.status === 422) {
+        toast.error(data.message);
       }
     } else {
-      const post = await res.json();
-      router.push(`/posts/${post.data.id}`);
+      router.push(`/posts/${data.data.id}`);
     }
   };
 

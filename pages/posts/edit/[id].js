@@ -59,12 +59,11 @@ export default function EditPostPage({ post, token }) {
     const data = await res.json();
 
     if (!res.ok) {
-      if (res.status === 403 || res.status === 401) {
-        toast.error("Something went wrong");
-        return;
-      } else if (res.status === 422) {
-        toast.error(data.message);
+      let message = "Something went wrong";
+      if (res.status === 422) {
+        message = data.message;
       }
+      toast.error(message);
     } else {
       router.push(`/posts/${data.data.id}`);
     }

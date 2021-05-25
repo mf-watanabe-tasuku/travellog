@@ -1,5 +1,3 @@
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Layout from "@/components/Layout";
 import Link from "next/link";
 import { API_URL, DEFAULT_IMAGE_PATH } from "@/config/index";
@@ -22,7 +20,6 @@ export default function PostPage({ post }) {
           </div>
         </div>
         <h1 className={styles.post_title}>{post.title}</h1>
-        <ToastContainer />
         <div className={styles.post_eyecatch}>
           <img
             src={post.eyecatchUrl || DEFAULT_IMAGE_PATH}

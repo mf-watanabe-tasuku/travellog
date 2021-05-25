@@ -1,6 +1,5 @@
 import { parseCookies } from "@/helpers/index";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { FaTimes, FaImage } from "react-icons/fa";
 import Link from "next/link";
 import Layout from "@/components/Layout";
@@ -76,7 +75,7 @@ export default function EditPostPage({ post, token }) {
   };
 
   const imageUploaded = async () => {
-    setShowModal(!showModal);
+    setShowModal(false);
     setImagePreview(post.eyecatchUrl);
     toast.success("Image uploaded");
   };
@@ -93,7 +92,6 @@ export default function EditPostPage({ post, token }) {
     <Layout title="Edit Post">
       <Link href={`/posts/${post.id}`}>Go Back</Link>
       <h1>Edit Post</h1>
-      <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.form_row}>
           <label htmlFor="title">Title</label>

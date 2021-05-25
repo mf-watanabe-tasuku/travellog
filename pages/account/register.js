@@ -1,6 +1,5 @@
 import { FaUser } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
@@ -35,7 +34,6 @@ export default function RegisterPage() {
           <h1>
             <FaUser /> Register
           </h1>
-          <ToastContainer />
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username">Username</label>

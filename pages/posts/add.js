@@ -5,8 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 export default function AddPostPage({ token }) {
   const [values, setValues] = useState({
@@ -48,7 +47,6 @@ export default function AddPostPage({ token }) {
     <Layout title="Add Post">
       <Link href="/posts">Go Back</Link>
       <h1 className="page_heading">Add Post</h1>
-      <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.form_row}>
           <label htmlFor="title">Title</label>

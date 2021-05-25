@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import PostMap from "@/components/PostMap";
 import Link from "next/link";
 import { API_URL, DEFAULT_IMAGE_PATH } from "@/config/index";
 import styles from "@/styles/Post.module.css";
@@ -28,6 +29,7 @@ export default function PostPage({ post }) {
           />
         </div>
         <div className={styles.post_body}>{post.body}</div>
+        <PostMap post={post} />
         <Link href="/posts">Back To Posts</Link>
       </div>
     </Layout>

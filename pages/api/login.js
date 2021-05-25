@@ -30,7 +30,7 @@ export default async (req, res) => {
         })
       );
 
-      res.status(200).json({ user: data.data.user });
+      res.status(200).json({ user: data.data.user, message: data.message });
     } else {
       res.status(500).json({ message: data.message });
     }

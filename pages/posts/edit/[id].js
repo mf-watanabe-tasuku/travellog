@@ -66,6 +66,7 @@ export default function EditPostPage({ post, token }) {
       toast.error(message);
     } else {
       router.push(`/posts/${data.data.id}`);
+      toast.success(data.message);
     }
   };
 
@@ -75,15 +76,17 @@ export default function EditPostPage({ post, token }) {
   };
 
   const imageUploaded = async () => {
+    setShowModal(!showModal);
     setImagePreview(post.eyecatchUrl);
-    router.reload();
+    toast.success("Image uploaded");
   };
 
   const deleteEyecatch = async () => {
     await fetch(`${API_URL}/eyecatches/${post.eyecatchId}`, {
       method: "DELETE",
     });
-    router.reload();
+    setImagePreview(null);
+    toast.success("Image deleted");
   };
 
   return (

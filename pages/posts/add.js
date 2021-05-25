@@ -35,6 +35,7 @@ export default function AddPostPage({ token }) {
       return;
     } else {
       router.push(`/posts/${post.data.id}`);
+      toast.success(post.message);
     }
   };
 

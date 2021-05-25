@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { NEXT_URL } from "@/config/index";
@@ -26,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     if (res.ok) {
       setUser(data.user);
       router.push("/");
+      toast.success(data.message);
     } else {
       setError(data.message);
       setError(null);
@@ -49,6 +52,7 @@ export const AuthProvider = ({ children }) => {
     if (res.ok) {
       setUser(data.user);
       router.push("/");
+      toast.success(data.message);
     } else {
       setError(data.message);
       setError(null);
@@ -60,9 +64,12 @@ export const AuthProvider = ({ children }) => {
       method: "POST",
     });
 
+    const data = await res.json();
+
     if (res.ok) {
       setUser(null);
       router.push("/");
+      toast.success(data.message);
     }
   };
 

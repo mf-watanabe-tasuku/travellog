@@ -18,7 +18,7 @@ export default function PostMap({ post }) {
   });
 
   useEffect(() => {
-    Geocode.fromAddress("Eiffel Tower").then(
+    Geocode.fromAddress(post.place).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         setLat(lat);

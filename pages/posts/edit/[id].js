@@ -15,6 +15,7 @@ export default function EditPostPage({ post, token }) {
   const [values, setValues] = useState({
     title: post.title,
     body: post.body,
+    place: post.place,
   });
 
   const [imagePreview, setImagePreview] = useState(post.eyecatchUrl);
@@ -100,6 +101,16 @@ export default function EditPostPage({ post, token }) {
             id="title"
             name="title"
             value={values.title}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className={styles.form_row}>
+          <label htmlFor="place">Place</label>
+          <input
+            type="text"
+            id="place"
+            name="place"
+            value={values.place}
             onChange={handleInputChange}
           />
         </div>

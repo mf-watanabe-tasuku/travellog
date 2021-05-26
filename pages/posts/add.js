@@ -11,6 +11,7 @@ export default function AddPostPage({ token }) {
   const [values, setValues] = useState({
     title: "",
     body: "",
+    place: "",
   });
 
   const router = useRouter();
@@ -55,6 +56,16 @@ export default function AddPostPage({ token }) {
             id="title"
             name="title"
             value={values.title}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className={styles.form_row}>
+          <label htmlFor="place">Place</label>
+          <input
+            type="text"
+            id="place"
+            name="place"
+            value={values.place}
             onChange={handleInputChange}
           />
         </div>

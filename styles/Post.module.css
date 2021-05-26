@@ -2,9 +2,26 @@
   padding: 50px 0;
 }
 
-.post_date {
+.post_info {
   color: #777;
-  font-size: 14px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post_info > div {
+  display: flex;
+  align-items: center;
+}
+
+.post_date > span:nth-of-type(1) {
+  margin-right: 15px;
+}
+
+.post_icon {
+  margin-right: 3px;
+  font-size: 18px;
 }
 
 .post_title {
@@ -15,8 +32,13 @@
   margin-bottom: 20px;
 }
 
+.post_eyecatch img {
+  width: 100%;
+  height: auto;
+}
+
 .post_body {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .post_map {

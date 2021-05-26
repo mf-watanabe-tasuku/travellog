@@ -26,10 +26,12 @@ export default function PostItem({ post }) {
             <FaPencilAlt className={styles.postItem_icon} />
             {new Date(post.updated_at).toLocaleDateString("en-US")}
           </p>
-          <p>
-            <MdPlace />
-            {post.place}
-          </p>
+          {post.place && (
+            <p>
+              <MdPlace className={styles.postItem_icon} />
+              {post.place}
+            </p>
+          )}
         </div>
         <p className={styles.postItem_excerpt}>{postBody}</p>
         <Link href={`/posts/${post.id}`}>

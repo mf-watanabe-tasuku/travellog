@@ -18,10 +18,12 @@ export default function PostPage({ post }) {
               Posted: {new Date(post.created_at).toLocaleDateString("en-US")}
             </span>
           </div>
-          <div className={styles.post_place}>
-            <MdPlace className={styles.post_icon} />
-            {post.place}
-          </div>
+          {post.place && (
+            <div className={styles.post_place}>
+              <MdPlace className={styles.post_icon} />
+              {post.place}
+            </div>
+          )}
         </div>
         <h1 className={styles.post_title}>{post.title}</h1>
         <div className={styles.post_eyecatch}>

@@ -1,0 +1,20 @@
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: db/test.sqlite3
+
+production:
+  <<: *default
+  database: travellog_production
+  username: travellog_admin
+  adapter: postgresql
+  encoding: unicode
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>

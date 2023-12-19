@@ -1,4 +1,4 @@
-# Travel Log - frontend
+# Travel Log
 
 ## 概要
 
@@ -19,12 +19,6 @@ Next.js/Railを使ったポートフォリオとして作成したプロジェ�
 |バックエンド|Ruby on Rails6 (APIモード)|
 |画像アップロード|Cloudinary|
 |マップ表示|Mapbox / Google Cloud APIs|
-|ホスティング(フロント)|Vercel|
-|ホスティング(バックエンド)|Heroku|
-
-## 公開URL
-
-プロジェクトは[こちら](https://travellog-nu.vercel.app/)で公開しています。
 
 ### テストアカウント
 
@@ -34,8 +28,3 @@ Next.js/Railを使ったポートフォリオとして作成したプロジェ�
 ID: test1@example.com
 PW: foobar
 ```
-
-## バックエンド用リポジトリ
-
-本リポジトリはフロントエンド用のリポジトリです。
-バックエンド用のリポジトリ[こちら](https://github.com/tasukuwatanabe/travellog-backend)です。

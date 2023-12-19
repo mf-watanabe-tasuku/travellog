@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import ReactMapGl, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -49,7 +48,7 @@ export default function PostMap({ post }) {
         onViewportChange={(vp) => setViewport(vp)}
       >
         <Marker key={post.id} latitude={lat} longitude={lng}>
-          <Image src="/pin.svg" width={30} height={30} />
+          <img src="/pin.svg" width={30} height={30} />
         </Marker>
       </ReactMapGl>
     </div>

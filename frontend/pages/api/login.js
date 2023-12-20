@@ -25,8 +25,8 @@ export default async (req, res) => {
           httpOnly: true,
           secure: process.env.NODE_ENV != "development",
           maxAge: 60 * 60 * 24 + 7,
-          sameSite: "strict",
           path: "/",
+          domain: process.env.NODE_ENV === "development" ? 'localhost' : '.travel-log.blog'
         })
       );
 

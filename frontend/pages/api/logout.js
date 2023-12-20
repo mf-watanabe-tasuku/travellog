@@ -8,8 +8,8 @@ export default async (req, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV !== "development",
         expires: new Date(0),
-        sameSite: "strict",
         path: "/",
+        domain: process.env.NODE_ENV === "development" ? 'localhost' : '.travel-log.blog'
       })
     );
 

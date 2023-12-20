@@ -3,6 +3,7 @@
 ## 概要
 
 Next.js/Railを使ったポートフォリオとして作成したプロジェクトです。<br>`世界を旅するトラベルライターさんが書く旅ブログ`をテーマにしました。
+
 https://app.travel-log.blog/
 
 <img width="800" alt="travel_log" src="https://github.com/mf-watanabe-tasuku/travellog/assets/79836621/c5004209-2fec-428b-8fc6-3b77cfc04bf2">
